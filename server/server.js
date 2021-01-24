@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -9,6 +10,12 @@ require("dotenv").config({
 });
 
 const app = express();
+
+// Connect to database
+connectDB();
+
+// config bodyParser
+app.use(bodyParser.json());
 
 // config for only development
 if (process.env.NODE_ENV === "development") {
@@ -23,6 +30,12 @@ if (process.env.NODE_ENV === "development") {
 // Morgan give information about each request
 // Cors it's allow to deal with react for localhost at port 3000 without any problem
 
+// Load all routes
+const authRouter = require("./routes/auth.route");
+
+// Use Routes
+app.use("/api/", authRouter);
+
 app.use((req, res, next) => {
   res.status(404).json({
     success: false,
@@ -30,8 +43,6 @@ app.use((req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT;
-
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+app.listen(5000, () => {
+  console.log(`App listening on port 5000`);
 });
