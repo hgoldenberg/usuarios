@@ -15,21 +15,6 @@ const userScheama = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    lastname: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    dni: {
-      type: Number,
-      trim: true,
-      required: true,
-    },
-    address: {
-      type: String,
-      trim: true,
-      required: true,
-    },
     hashed_password: {
       type: String,
       required: true,
