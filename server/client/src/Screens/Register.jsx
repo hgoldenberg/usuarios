@@ -24,7 +24,7 @@ const Register = () => {
       if (password1 === password2) {
         setFormData({ ...formData, textChange: "Submitting" });
         axios
-          .post(`${process.env.REACT_APP_API_URL}/register`, {
+          .post("http://localhost:5000/api/register", {
             name,
             email,
             password: password1,
